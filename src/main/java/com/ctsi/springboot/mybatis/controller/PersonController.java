@@ -1,5 +1,7 @@
 package com.ctsi.springboot.mybatis.controller;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +34,12 @@ public class PersonController {
 		Person p = personMapper.findById(id);
 		
 		return p.toString();
+	}
+	
+	@RequestMapping("/save")
+	public void save() {
+		Person p = new Person("Jane", 17, new Date());
+		personMapper.save(p);
 	}
 	
 }
