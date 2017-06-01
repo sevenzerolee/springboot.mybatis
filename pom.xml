@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <pagehelper.version>4.1.6</pagehelper.version>
   </properties>
 
 <parent>
@@ -37,6 +38,18 @@
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		
+	<dependency>
+		<groupId>com.github.pagehelper</groupId>
+		<artifactId>pagehelper</artifactId>
+		<version>${pagehelper.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.3</version>
+	</dependency>
     
     <dependency>
         <groupId>org.springframework.boot</groupId>

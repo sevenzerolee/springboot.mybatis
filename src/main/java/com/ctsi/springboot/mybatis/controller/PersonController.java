@@ -1,6 +1,7 @@
 package com.ctsi.springboot.mybatis.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ctsi.springboot.mybatis.entity.Person;
 import com.ctsi.springboot.mybatis.mapper.PersonMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/person")
@@ -40,6 +44,22 @@ public class PersonController {
 	public void save() {
 		Person p = new Person("Jane", 17, new Date());
 		personMapper.save(p);
+	}
+	
+	@RequestMapping("/getall/{num}")
+	public String getAll(@PathVariable int num) {
+		log.info("## " + num);
+		int size = 2;
+		PageHelper.startPage(num, size);
+		List<Person> list = personMapper.findAll();
+		PageInfo<Person> pageInfo = new PageInfo<Person>(list);
+		log.info("## " + pageInfo);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(pageInfo);
+		log.info("## " + json);
+		
+		return json;
 	}
 	
 }
