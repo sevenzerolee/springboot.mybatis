@@ -43,7 +43,9 @@ public class PersonController {
 	@RequestMapping("/save")
 	public void save() {
 		Person p = new Person("Jane", 17, new Date());
+		log.info("## " + p.getId());
 		personMapper.save(p);
+		log.info("## " + p.getId());
 	}
 	
 	@RequestMapping("/getall/{num}")
